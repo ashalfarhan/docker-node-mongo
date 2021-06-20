@@ -1,6 +1,6 @@
-const yup = require("yup");
+import * as yup from "yup";
 
-module.exports = yup.object().shape({
+export const studentValidation = yup.object().shape({
   name: yup.string().required(),
   age: yup.number().min(18).required(),
   major: yup
