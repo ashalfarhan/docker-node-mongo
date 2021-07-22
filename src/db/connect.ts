@@ -1,11 +1,10 @@
 import chalk from "chalk";
 import { FastifyInstance } from "fastify";
-import mongoose from "mongoose";
+import mongoose, { ConnectionOptions } from "mongoose";
 
 const uri = "mongodb://127.0.0.1:2717/example";
 
-const options = {
-  // DB Path ~/data/db/mongo/example
+const options: ConnectionOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };

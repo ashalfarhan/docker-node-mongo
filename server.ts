@@ -7,13 +7,8 @@ const port = process.env.PORT || 5000;
 (async () => {
   try {
     await initDatabase(app);
-    app.listen(port, (error, address) => {
-      if (error) {
-        app.log.error(error);
-        process.exit(1);
-      }
-      console.log(chalk.blue(`[server] Listening on: ${address}`));
-    });
+    await app.listen(port);
+    console.log(chalk.blue(`[server] Listening on: http://localhost:${port}`));
   } catch (error) {
     console.log(chalk.red(`[server] Error: `, error.message));
     process.exit(1);
