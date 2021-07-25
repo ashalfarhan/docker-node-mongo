@@ -14,16 +14,37 @@ app.register(fastifySwagger, {
     info: {
       title: "Learn Fastify Rest",
       version: "0.1.0",
+      description: "Just an example of fastify learn with docker",
     },
+    consumes: ["application/json"],
+    produces: ["application/json"],
+    // definitions: {
+    //   Post: {
+    //     type: "object",
+    //     required: ["title", "body"],
+    //     properties: {
+    //       title: {
+    //         type: "string",
+    //       },
+    //       body: {
+    //         type: "string",
+    //       },
+    //     },
+    //   },
+    // },
   },
 });
 
-fs.readdirSync(path.join(__dirname, "routes")).forEach((file) => {
-  const name = file.substr(0, file.indexOf("."));
-  import("./routes/" + name).then((handler) => {
-    app.register(handler, { prefix: `/api/${name}` });
+try {
+  fs.readdirSync(path.join(__dirname, "routes")).forEach((file) => {
+    const name = file.substr(0, file.indexOf("."));
+    import("./routes/" + name).then((handler) => {
+      app.register(handler, { prefix: `/api/${name}` });
+    });
   });
-});
+} catch (error) {
+  console.log("Dynamic register error: ", error.message);
+}
 
 const indexRouteResponseSchema = {
   200: {

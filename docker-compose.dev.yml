@@ -12,4 +12,11 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
+      - MONGO_USERNAME=ashal
+      - MONGO_PASSWORD=ashal123
     command: yarn dev
+    
+  database-mongo:
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=ashal
+      - MONGO_INITDB_ROOT_PASSWORD=ashal123

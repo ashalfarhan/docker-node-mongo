@@ -1,10 +1,17 @@
 ### Index route
 GET http://localhost:5000 HTTP/1.1
 
+### Get All Posts
+GET http://localhost:5000/api/posts HTTP/1.1
 
-### Get all albums
-GET http://localhost:5000/api/albums HTTP/1.1
+### Get Single Post
+GET http://localhost:5000/api/posts/60fd98023bfb5f008647384a HTTP/1.1
 
+### Create new posts
+POST http://localhost:5000/api/posts HTTP/1.1
+Content-Type: "application/json"
 
-### Get single item
-GET http://localhost:5000/api/albums/12 HTTP/1.1
+{
+    "title": "Ashal",
+    "body":"farhan"
+}

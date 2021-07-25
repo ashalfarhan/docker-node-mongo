@@ -5,7 +5,7 @@ import fetch from "node-fetch";
 
 // const DEFAUL_MAX_AGE = 3600;
 
-const albumsRoute: FastifyPluginCallback<FastifyPluginOptions, Server> = (
+const albumsRoutesHandler: FastifyPluginCallback<FastifyPluginOptions, Server> = (
   route,
   _,
   done,
@@ -44,4 +44,4 @@ const albumsRoute: FastifyPluginCallback<FastifyPluginOptions, Server> = (
   done();
 };
 
-export default albumsRoute;
+export default albumsRoutesHandler;

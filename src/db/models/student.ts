@@ -1,24 +1,23 @@
-// import { getModelForClass, prop } from "@typegoose/typegoose";
+import { getModelForClass, prop } from "@typegoose/typegoose";
 
-// class Student {
-//   readonly _id: string;
+class Student {
+  readonly _id: string;
 
-//   readonly createdAt: Date;
+  readonly createdAt: Date;
 
-//   readonly updatedAt: Date;
+  readonly updatedAt: Date;
 
-//   @prop({ type: () => String, unique: true })
-//   public name: string;
+  @prop({ type: () => String, unique: true })
+  public name: string;
 
-//   @prop({ type: () => String })
-//   public major: string;
+  @prop({ type: () => String })
+  public major: string;
 
-//   @prop({ type: () => Number })
-//   public age: number;
-// }
+  @prop({ type: () => Number })
+  public age: number;
+}
 
 
-export {}
-// export const StudentModel = getModelForClass(Student, {
-//   schemaOptions: { timestamps: true },
-// });
+export const StudentModel = getModelForClass(Student, {
+  schemaOptions: { timestamps: true },
+});

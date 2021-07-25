@@ -1,7 +1,20 @@
 version: "3"
 services:
-    backend:
-        build: .
-        ports:
-            - "5000:5000"
-        
+  
+  backend:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on: 
+      - database-mongo
+
+  database-mongo:
+    image: mongo
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=ashal
+      - MONGO_INITDB_ROOT_PASSWORD=ashal123
+    volumes: 
+      - mongo-db:/data/db
+
+volumes:
+  mongo-db:

@@ -1,10 +1,12 @@
 import chalk from "chalk";
 import app from ".";
+import { initDatabase } from "./db/connect";
 
 const port = process.env.PORT || 5000;
 
 (async () => {
   try {
+    await initDatabase(app)
     await app.listen(port, process.env.HOST);
   } catch (error) {
     console.log(
@@ -33,4 +35,8 @@ const port = process.env.PORT || 5000;
  * Note: -f stands for file config, and the first file should me the basic config
  * and then the second one should be the environment specifig config
  * docker-compose -f docker-compose.yml -f docker-compose.prod.yml down -v
+ * 
+ * ## Get ip address and another info about container
+ * 
+ * docker inspect <container_name|container_id>
  */
