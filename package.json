@@ -1,23 +1,26 @@
 {
   "name": "docker-node",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "dist/server.js",
   "license": "MIT",
   "dependencies": {
-    "@typegoose/typegoose": "^7.6.1",
     "chalk": "^4.1.1",
     "express": "^4.17.1",
     "fastify": "^3.18.0",
-    "mongoose": "5.10.18",
+    "fastify-swagger": "^4.8.3",
+    "node-fetch": "^2.6.1",
+    "redis": "^3.1.2",
     "yup": "^0.32.9"
   },
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "nodemon server.ts"
+    "dev": "nodemon src/server.ts",
+    "build": "tsc"
   },
   "devDependencies": {
-    "@types/mongoose": "5.10.2",
     "@types/node": "^15.12.4",
+    "@types/node-fetch": "^2.5.11",
+    "@types/redis": "^2.8.31",
     "nodemon": "^2.0.7",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.4"

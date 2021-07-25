@@ -1,0 +1,10 @@
+### Index route
+GET http://localhost:5000 HTTP/1.1
+
+
+### Get all albums
+GET http://localhost:5000/api/albums HTTP/1.1
+
+
+### Get single item
+GET http://localhost:5000/api/albums/12 HTTP/1.1
