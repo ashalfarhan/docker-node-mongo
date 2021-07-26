@@ -4,11 +4,17 @@
   "main": "dist/server.js",
   "license": "MIT",
   "dependencies": {
+    "@mgcrea/fastify-session": "^0.14.1",
+    "@mgcrea/fastify-session-redis-store": "^0.9.1",
     "@typegoose/typegoose": "^7.6.3",
+    "bcryptjs": "^2.4.3",
     "chalk": "^4.1.1",
     "express": "^4.17.1",
-    "fastify": "^3.18.0",
+    "fastify": "^3.19.2",
+    "fastify-cookie": "^5.3.1",
+    "fastify-cors": "^6.0.2",
     "fastify-swagger": "^4.8.3",
+    "ioredis": "^4.27.6",
     "mongoose": "5.10.18",
     "node-fetch": "^2.6.1",
     "redis": "^3.1.2",
@@ -20,12 +26,14 @@
     "build": "tsc"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/ioredis": "^4.26.6",
     "@types/mongoose": "5.10.2",
     "@types/node": "^15.12.4",
     "@types/node-fetch": "^2.5.11",
     "@types/redis": "^2.8.31",
-    "nodemon": "^2.0.7",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.4"
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.3.5"
   }
 }

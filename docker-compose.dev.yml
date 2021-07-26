@@ -1,12 +1,19 @@
 version: "3"
+
 services:
+
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "5000:80"
+      
   backend:
     build:
       context: .
       args:
         NODE_ENV: development
-    ports:
-      - "5000:5000"
+    # ports:
+    #   - "5000:5000"
     volumes:
       - ./:/app:ro
       - /app/node_modules
@@ -14,9 +21,10 @@ services:
       - NODE_ENV=development
       - MONGO_USERNAME=ashal
       - MONGO_PASSWORD=ashal123
+      - SESSION_SECRET=supersecret
     command: yarn dev
-    
+
   database-mongo:
-    environment: 
+    environment:
       - MONGO_INITDB_ROOT_USERNAME=ashal
       - MONGO_INITDB_ROOT_PASSWORD=ashal123

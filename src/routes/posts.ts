@@ -10,6 +10,16 @@ type ParamsWithId = yup.TypeOf<typeof paramsWithIdSchema>;
 
 const postsRoutesHandler: FastifyPluginCallback<FastifyPluginOptions, Server> =
   (route, _options, done) => {
+    route.addHook("preHandler", (req, res, next) => {
+      const { user } = req.session.data;
+      if (!user) {
+        res.status(401).send({
+          message: "Session is expired, try to login to get another session",
+        });
+        return;
+      }
+      next();
+    });
     route
       .addSchema({
         $id: "withPostId",
@@ -33,7 +43,11 @@ const postsRoutesHandler: FastifyPluginCallback<FastifyPluginOptions, Server> =
           },
         },
       });
-    route.get("/", async (_, res) => {
+    route.get("/", async (req, res) => {
+      console.log(req.ip)
+      console.log(req.ips)
+      console.log(req.hostname)
+      console.log(req.protocol)
       try {
         const results = await PostModel.find();
         if (results.length > 0) {
@@ -61,7 +75,7 @@ const postsRoutesHandler: FastifyPluginCallback<FastifyPluginOptions, Server> =
         try {
           const result = await PostModel.findById(req.params.id);
           if (!result) {
-            return res.status(400).send({
+            return res.status(404).send({
               message: "Cannot find post with the id of " + req.params.id,
             });
           }
@@ -125,10 +139,9 @@ const postsRoutesHandler: FastifyPluginCallback<FastifyPluginOptions, Server> =
             req.body,
           );
           if (result) {
-            // await result.save()
-            return res.status(204).send({
+            await result.save();
+            return res.status(201).send({
               message: "Success update a post " + result.title,
-              result,
             });
           }
           return res.status(404).send({
@@ -152,7 +165,7 @@ const postsRoutesHandler: FastifyPluginCallback<FastifyPluginOptions, Server> =
         try {
           const result = await PostModel.findByIdAndDelete(req.params.id);
           if (!result) {
-            return res.status(400).send({
+            return res.status(404).send({
               message: "Cannot find post with the id of " + req.params.id,
             });
           }

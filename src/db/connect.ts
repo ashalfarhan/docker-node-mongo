@@ -10,7 +10,8 @@ const uri = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_P
 const options: ConnectionOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  useFindAndModify: false
 };
 
 export const initDatabase = async (app: FastifyInstance) => {
